@@ -1,10 +1,14 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 const port = 4000;
 
+// routes
+const homePage = require('./routes/index.js');
+const aboutPage = require('./routes/about.js');
 
-app.get('/', (req, res) => {
-    res.send("Hellow, world");
-})
+// route instantiations
+app.use('/', homePage)
+app.use('/about', aboutPage)
+app.use('/images', express.static('public'))
 
-app.listen(port, () => console.log('Running an app on Port 4000'))
+app.listen(port, () => console.log('Running an app on Port 4000'));
